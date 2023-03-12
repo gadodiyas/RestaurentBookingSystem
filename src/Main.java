@@ -44,8 +44,8 @@ public class Main {
         availabilityMap.put(LocalDateTime.of(2023, Month.MARCH, 13, 10, 00), 5);
 
         bookingSystemManager.updateAvailability(restaurant1.getId(), availabilityMap);
-        List<Restaurant> restaurantList = bookingSystemManager.searchReataurant(SearchFields.NAME, "ABC");
+        List<Restaurant> restaurantList = bookingSystemManager.searchRestaurant(SearchFields.NAME, "ABC");
 
-        bookingSystemManager.bookTable(restaurant1.getId(), 1, 4);
+        bookingSystemManager.bookTable(restaurant1.getId(), 1, 4,LocalDateTime.of(2023, Month.MARCH, 12, 10, 00));
     }
 }

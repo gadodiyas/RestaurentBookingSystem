@@ -1,7 +1,6 @@
 package service;
 
 import exception.NotValiSearchParameterException;
-import model.Booking;
 import model.enums.RestaurantType;
 import model.enums.SearchFields;
 import repo.RestaurantsRepo;
@@ -30,7 +29,7 @@ public class BookingSystemManager {
         Restaurant restaurant = restaurantsRepo.getRestaurant(id);
         restaurant.getAvailableSlots().putAll(availabilityMap);
     }
-    public List<Restaurant> searchReataurant(SearchFields field, String val) {
+    public List<Restaurant> searchRestaurant(SearchFields field, Object val) {
 
         switch(field){
             case AREA:
@@ -40,11 +39,11 @@ public class BookingSystemManager {
             case COST_FOR_TWO:
                 return restaurantsRepo.searchRestaurant(( x,  y)-> x.getCostForTwo().compareTo((Double) y) == 0 , val );
             case NAME:
-                return restaurantsRepo.searchRestaurant(( x,  y)-> x.getName().equals((String)y), val );
+                return restaurantsRepo.searchRestaurant(( x,  y)-> x.getName().equals((String)y),val );
             case CUISINE:
                 return restaurantsRepo.searchRestaurant(( x,  y)-> x.getCuisine().contains((String)y), val );
             case RESTAURANT_TYPE:
-                return restaurantsRepo.searchRestaurant(( x,  y)-> x.getRestaurantType().equals((RestaurantType) y), val );
+                return restaurantsRepo.searchRestaurant(( x,  y)-> x.getRestaurantType().equals((RestaurantType) y),val );
             default:
                 throw new NotValiSearchParameterException("Not Valid Search");
 
@@ -53,7 +52,7 @@ public class BookingSystemManager {
 
     public void bookTable(int restaurentId, int userId, int noOfPersons, LocalDateTime time) {
         Restaurant restaurant = restaurantsRepo.getRestaurant(restaurentId);
-        new Thread(() -> bookingService.bookTable(restaurant, userId, noOfPersons, time)).start();
+        bookingService.bookTable(restaurant, userId, noOfPersons, time);
 
     }
 }

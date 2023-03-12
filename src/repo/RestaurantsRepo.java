@@ -24,7 +24,7 @@ public class RestaurantsRepo {
         return re;
     }
 
-    public List<Restaurant> searchRestaurant(MyComparator c, String val) {
+    public List<Restaurant> searchRestaurant(MyComparator c, Object val) {
         List<Restaurant> res = new ArrayList<>();
         for(Restaurant r : restaurants.values()) {
             if(c.compare(r, val ))

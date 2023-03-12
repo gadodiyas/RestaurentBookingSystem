@@ -8,6 +8,7 @@ public class Booking {
     LocalDateTime time;
     int noOfPersons;
 
+
     public Booking(LocalDateTime time, int id, int userId, int noOfPersons) {
         this.time = time;
         this.userId = userId;
@@ -15,6 +16,7 @@ public class Booking {
         reataurantID = id;
 
     }
+
 
     @Override
     public String toString() {
@@ -25,6 +27,9 @@ public class Booking {
                 ", noOfPersons=" + noOfPersons +
                 '}';
     }
+
 //to Do - make booking repo to save all booking
     //make user entity and repo to save users
+
+
 }
